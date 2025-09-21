@@ -39,7 +39,7 @@
 			<ul class="mx-auto text-left space-y-1">
 				<li><a href="/publications">Visit Publications</a></li>
 				<li><a href="/projects">Visit Projects <span class="text-xs">(WIP)</span></a></li>
-				<li><a href="/sofortigramm/">Visit Photography</a></li>
+				<li><a href="/sofortigramm/">Visit Photography <span class="text-xs">(WIP)</span></a></li>
 			</ul>
 		</div>
 
