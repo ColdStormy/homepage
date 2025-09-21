@@ -6,7 +6,7 @@
 <section
 	class="relative flex flex-col items-center justify-center min-h-screen px-4 overflow-hidden font-sans text-gray-200 pt-20"
 >
-	<div class="fixed inset-0 w-screen h-screen z-0">
+	<div class="fixed inset-0 w-screen h-screen z-0 select-none">
 		<picture class="w-full h-full block">
 			<!-- Tablet (medium) -->
 			<source media="(min-width:768px)" srcset="/images/bg-wide.jpg" />
