@@ -58,9 +58,9 @@
 </svelte:head>
 
 <div class="w-full flex items-center justify-center">
-	<div class="relative w-full max-w-7xl mx-auto">
+	<div class="relative h-full max-w-7xl mx-auto bg-white">
 		{#if !imageLoaded}
-			<div class="w-full aspect-[3/2] animate-pulse flex items-center justify-center">
+			<div class="h-full aspect-[3/2] animate-pulse flex items-center justify-center">
 				<div>Loading image...</div>
 			</div>
 		{/if}
@@ -68,7 +68,7 @@
 		<img
 			src={imageData.src}
 			alt={imageData.title}
-			class="w-full h-auto object-cover shadow-2xl"
+			class="h-full w-auto object-cover shadow-2xl"
 			class:opacity-0={!imageLoaded}
 			class:opacity-100={imageLoaded}
 			style="transition: opacity 0.5s ease-in-out;"
