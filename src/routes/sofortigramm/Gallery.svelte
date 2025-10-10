@@ -12,6 +12,7 @@
 		const aspectRatio = width / height;
 		
 		return {
+			id: `coldstormy${i}`,
 			src: `https://picsum.photos/seed/coldstormy${i}/${width}/${height}`,
 			alt: `Sample photo ${i}`,
 			title: [
@@ -27,6 +28,7 @@
 	};
 
 	interface Photo {
+		id: string;
 		src: string;
 		alt: string;
 		title: string;
@@ -95,19 +97,26 @@
 {#each columns as column}
     <div class="flex flex-col gap-6 flex-1">
         {#each column as photo}
-            <div 
-                class="bg-white transition-transform overflow-hidden hover:cursor-pointer w-full relative photo-container"
-                style="aspect-ratio: {photo.aspectRatio};"
-            >
-                <img
-                    src={photo.src}
-                    alt={photo.alt}
-                    class="w-full h-full object-cover transition-transform duration-200 ease-out hover:scale-110"
-                    loading="lazy"
-                    decoding="async"
-                />
-                <div class="w-full h-full relative placeholder animate-pulse"></div>
-            </div>
+			<a 
+				href="sofortigramm/{photo.id}"
+				rel="noopener noreferrer"
+				class="block w-full"
+				style="aspect-ratio: {photo.aspectRatio};"
+			>
+				<div 
+					class="bg-white transition-transform overflow-hidden hover:cursor-pointer w-full relative photo-container"
+					style="aspect-ratio: {photo.aspectRatio};"
+				>
+					<img
+						src={photo.src}
+						alt={photo.alt}
+						class="w-full h-full object-cover transition-transform duration-200 ease-out hover:scale-110"
+						loading="lazy"
+						decoding="async"
+					/>
+					<div class="w-full h-full relative placeholder animate-pulse"></div>
+				</div>
+			</a>
         {/each}
     </div>
 {/each}
