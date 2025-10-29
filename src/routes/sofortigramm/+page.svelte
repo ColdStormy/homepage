@@ -1,8 +1,11 @@
-<script>
+<script lang="ts">
 	import { Segment } from '@skeletonlabs/skeleton-svelte';
 	import { MoveLeft } from '@lucide/svelte';
 	import Gallery from './Gallery.svelte';	
 	import ScrollTopButton from './ScrollTopButton.svelte';
+	import type { PageProps } from './$types';
+
+	let { data }: PageProps = $props();
 </script>
 
 
@@ -19,7 +22,7 @@
 </div>
 
 <div class="flex flex-row justify-start items-start gap-4 p-10 transition-transform">
-	<Gallery />
+	<Gallery data={data.imageDatabase} />
 </div>
 
 <ScrollTopButton />

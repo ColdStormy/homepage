@@ -1,37 +1,18 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 
-	const TOTAL_PHOTOS = 55;
+	const { data } = $props();
+
+	let TOTAL_PHOTOS = -1;
 	const PHOTOS_PER_BATCH = 12;
 	const SCROLL_THRESHOLD = 300; // Load more when 300px from bottom
 
-	// Generate all photo metadata but don't add to visible list yet
-	const generatePhoto = (i: number) => {
-		const height = Math.floor(Math.random() * 200) + 200; // Random height between 200 and 400
-		const width = Math.floor(Math.random() * 200) + 300; // Random width between 300 and 500
-		const aspectRatio = width / height;
-		
-		return {
-			id: `coldstormy${i}`,
-			src: `https://picsum.photos/seed/coldstormy${i}/${width}/${height}`,
-			alt: `Sample photo ${i}`,
-			title: [
-				'Beautiful Landscape',
-				'City Architecture',
-				'Nature Photography',
-				'Street Photography',
-				'Portrait Session',
-				'Abstract Art'
-			][(i - 1) % 6],
-			aspectRatio
-		};
-	};
 
 	interface Photo {
-		id: string;
-		src: string;
-		alt: string;
-		title: string;
+		imageID: string;
+		showcaseFilePath: string;
+		thumbnailFilePath: string;
+		name: string;
 		aspectRatio: number;
 	}
 
@@ -46,9 +27,20 @@
 		loading = true;
 		const nextBatch = [];
 		const batchSize = Math.min(PHOTOS_PER_BATCH, TOTAL_PHOTOS - loadedCount);
+
+		let keys = Object.keys(data);
 		
 		for (let i = 0; i < batchSize; i++) {
-			nextBatch.push(generatePhoto(loadedCount + i + 1));
+			let imgData = data[keys[loadedCount + i]];
+			let p : Photo = {
+				imageID: imgData.imageID,
+				showcaseFilePath: imgData.showcaseFilePath,
+				thumbnailFilePath: imgData.thumbnailFilePath,
+				name: imgData.name,
+				aspectRatio: imgData.aspectRatio
+			};
+			console.log(p);
+			nextBatch.push(p);
 		}
 		
 		visiblePhotos = [...visiblePhotos, ...nextBatch];
@@ -85,6 +77,7 @@
         window.addEventListener('scroll', handleScroll);
         
         // Load initial batch of photos
+		TOTAL_PHOTOS = Object.keys(data).length;
         loadMorePhotos();
 
         return () => {
@@ -98,7 +91,7 @@
     <div class="flex flex-col gap-6 flex-1">
         {#each column as photo}
 			<a 
-				href="sofortigramm/{photo.id}"
+				href="sofortigramm/{photo.imageID}"
 				rel="noopener noreferrer"
 				class="block w-full"
 				style="aspect-ratio: {photo.aspectRatio};"
@@ -108,8 +101,8 @@
 					style="aspect-ratio: {photo.aspectRatio};"
 				>
 					<img
-						src={photo.src}
-						alt={photo.alt}
+						src={photo.thumbnailFilePath}
+						alt={photo.name}
 						class="w-full h-full object-cover transition-transform duration-200 ease-out hover:scale-110"
 						loading="lazy"
 						decoding="async"

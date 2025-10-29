@@ -3,8 +3,10 @@
 	import { Camera, Aperture, Clock, Zap, Info } from '@lucide/svelte';
 
 	let { data }: PageProps = $props();
-	const imageID = data.post.imageID;
-	
+	console.log(data);
+	const imageID = data.imageID;
+	let imageData = data.imageDatabase[imageID as keyof typeof data.imageDatabase];
+
 	// Generate consistent image data based on imageID
 	const imageNumber = parseInt(imageID.replace('coldstormy', '')) || 1;
 	const seed = imageNumber;
@@ -12,18 +14,6 @@
 	// Generate consistent dimensions
 	const height = Math.floor(Math.sin(seed) * 100) + 600; // Height between 500-700
 	const width = Math.floor(Math.cos(seed) * 200) + 800; // Width between 600-1000
-	
-	const imageData = {
-		src: `https://picsum.photos/seed/${imageID}/${width}/${height}`,
-		title: [
-			'Serene Mountain Landscape',
-			'Urban Architecture Study',
-			'Golden Hour Portrait',
-			'Abstract Light Patterns',
-			'Street Life Moments',
-			'Natural Textures'
-		][imageNumber % 6]
-	};
 
 	// Generate consistent camera data
 	const cameras = ['Canon EOS R5', 'Sony A7R IV', 'Nikon D850', 'Fujifilm X-T4', 'Leica Q2'];
@@ -53,8 +43,8 @@
 </script>
 
 <svelte:head>
-	<title>{imageData.title} - Photography Portfolio</title>
-	<meta name="description" content={imageData.description} />
+	<title>{imageData.name} - Photography Portfolio</title>
+	<meta name="description" content={imageData.name} />
 </svelte:head>
 
 <div class="w-full flex items-center justify-center">
@@ -66,8 +56,8 @@
 		{/if}
 		
 		<img
-			src={imageData.src}
-			alt={imageData.title}
+			src="/{imageData.showcaseFilePath}"
+			alt={imageData.name}
 			class="h-full w-auto object-cover shadow-2xl"
 			class:opacity-0={!imageLoaded}
 			class:opacity-100={imageLoaded}
@@ -81,7 +71,7 @@
 <div class="max-w-4xl mx-auto px-6 py-12 space-y-8">
 	<div class="preset-filled-primary-950-50 rounded-lg p-6">
 		<h2 class="text-2xl font-semibold mb-6 flex items-center gap-2">
-			{imageData.title}
+			{imageData.name}
 		</h2>
 		
 		<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

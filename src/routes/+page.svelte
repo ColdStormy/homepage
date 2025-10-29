@@ -109,10 +109,6 @@
 </section>
 
 <style lang="scss">
-	button {
-		cursor: pointer;
-	}
-
 	a:hover {
 		// text-shadow: 0 0 2px rgba(255, 255, 255, 0.3);
 		color: rgba(153, 175, 255, 0.8);
