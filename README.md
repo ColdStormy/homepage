@@ -3,7 +3,7 @@
 This my own website which contains a quick introduction to my work profile, a gallery for my photos and showcasing/blogging personal projects I have.
 WIP partially 🙂
 
-Note, I am a CPP programmer. I up to no experience with a full web stack and some code here may be a little sloppy. I'm trying my best 💪
+Note, I am a CPP programmer. I have up to no experience with a full web stack and some code here may be a little sloppy. I'm trying my best 💪
 
 ## 🏗️ Tech Stack
 
@@ -13,6 +13,7 @@ Note, I am a CPP programmer. I up to no experience with a full web stack and som
 - **TailwindCSS 4** - Utility-first styling
 - **MDSveX** - Markdown support for content
 - **Lucide** - SVG Icon Library
+- **Skeleton** - An adaptive design system powered by Tailwind CSS.
 
 ### Image Processing
 - **Python** - Scripting and Image processing pipeline 
