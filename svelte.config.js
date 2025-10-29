@@ -6,8 +6,13 @@ import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
 const config = {
 	// Consult https://svelte.dev/docs/kit/integrations
 	// for more information about preprocessors
-	preprocess: [vitePreprocess(), mdsvex()],
-	kit: { adapter: adapter() },
+	preprocess: [vitePreprocess({script: true}), mdsvex()],
+	kit: { 
+		adapter: adapter(),
+		alias: {
+			"database.json": "static/images/database.json"
+		}
+	 },
 	extensions: ['.svelte', '.svx']
 };
 
