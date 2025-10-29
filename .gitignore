@@ -26,3 +26,9 @@ vite.config.ts.timestamp-*
 # Python
 venv
 __pycache__
+
+# custom
+static/images/showcase/*
+static/images/thumbnails/*
+assets/original/*
+static/images/database.json
